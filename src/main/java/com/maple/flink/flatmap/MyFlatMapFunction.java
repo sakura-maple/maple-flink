@@ -1,7 +1,6 @@
 package com.maple.flink.flatmap;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
-import org.apache.flink.api.java.tuple.Tuple;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.util.Collector;
 
@@ -11,15 +10,15 @@ public class MyFlatMapFunction implements FlatMapFunction<String,Tuple2<String,L
      * out 输出
      * @param string
      * @param out
-     * @throws Exception
      */
     @Override
-    public void flatMap(String string, Collector<Tuple2<String,Long>> out) throws Exception {
+    public void flatMap(String string, Collector<Tuple2<String,Long>> out) {
         //按空格分词 包装成二元组
         String[] strings = string.split(" ");
         System.out.println(Thread.currentThread().getName());
         for (String word : strings) {
-            out.collect(new Tuple2<String,Long>(word,1l));
+            Tuple2<String, Long> stringLongTuple2 = new Tuple2<>(word, 1L);
+            out.collect(new Tuple2<>(word, 1L));
         }
     }
 }

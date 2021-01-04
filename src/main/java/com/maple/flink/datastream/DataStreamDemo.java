@@ -1,13 +1,11 @@
 package com.maple.flink.datastream;
 
 
-import com.maple.flink.filter.MyFilterFunction;
 import com.maple.flink.flatmap.MyFlatMapFunction;
 import com.maple.flink.keyby.MyKeyByFunction;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
-import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 
@@ -34,7 +32,7 @@ public class DataStreamDemo {
          */
         DataStream<Tuple2<String, Long>> sum = stringDataStreamSource
                 .flatMap(new MyFlatMapFunction())
-                .filter(new MyFilterFunction())
+//                .filter(new MyFilterFunction())
                 .keyBy(new MyKeyByFunction())
                 .sum(1);
 

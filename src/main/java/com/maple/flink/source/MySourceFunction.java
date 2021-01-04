@@ -11,6 +11,11 @@ public class MySourceFunction implements SourceFunction<String> {
 
     @Override
     public void run(SourceContext<String> sourceContext) throws Exception {
+        int i=0;
+        while (i<10){
+            sourceContext.collect("100"+i);
+            i++;
+        }
 
     }
 
